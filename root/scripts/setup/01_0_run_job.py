@@ -17,8 +17,8 @@ def main():
   logger = create_logger(PurePath(__file__).stem)
 
   date_stamp = datetime.now().strftime("%G-W%V-%u-%H-%M-%S")
-  backup_name = f'minecraft-vanillaplusplus-backup-{date_stamp}.tar.lzma'
-  create_backup_path = f'/mnt/minecraft/{backup_name}'
+  backup_name = f'minecraft-vanillaplusplus-backup-{date_stamp}.tar.xz'
+  create_backup_path = f'/mnt/{backup_name}'
   backup_path = '/mnt/minecraft/world/.'
   final_backup_destination = f'/mnt/backups/{backup_name}'
 
@@ -31,7 +31,7 @@ def main():
     logger.info('Creating Backup')
 
     with tar_open(create_backup_path, 'w:xz') as tar:
-      tar.add(backup_path)
+      tar.add(backup_path, arcname='')
 
     resp = mcr.command("save-on")
     logger.info(resp)
