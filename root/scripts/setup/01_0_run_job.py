@@ -30,7 +30,10 @@ def main():
     final_backup_destination = f'/mnt/backups/{backup_name}'
     temp_path = '/mnt/tmp/'
 
-    remove_tree(temp_path)
+    try:
+        remove_tree(temp_path)
+    except FileNotFoundError:
+        pass
 
     copy_tree(
       backup_path,
