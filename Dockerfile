@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM dragoncrafted87/alpine:3.19
+FROM ghcr.io/dragoncrafted87/alpine:3.19
 
 ARG BUILD_DATE
 ARG VCS_REF
