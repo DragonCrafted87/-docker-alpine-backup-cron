@@ -1,4 +1,5 @@
-FROM dragoncrafted87/alpine:latest
+# syntax=docker/dockerfile:1
+FROM dragoncrafted87/alpine:3.19
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -13,7 +14,15 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 COPY root/. /
 
-# Install all the things!
-RUN pip3 --no-cache-dir install mcrcon  && \
-    rm -rf /var/cache/apk/* && \
+RUN ash <<eot
+    set -e
+
+    pip3 --no-cache-dir \
+        install \
+            --break-system-packages \
+            mcrcon \
+
+    rm -rf /tmp/*
+    rm -rf /var/cache/apk/*
     chmod +x -R /scripts/*
+eot
