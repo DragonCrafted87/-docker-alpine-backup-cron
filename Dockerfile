@@ -17,6 +17,8 @@ COPY root/. /
 RUN ash <<eot
     set -e
 
+    apk upgrade
+
     pip3 --no-cache-dir \
         install \
             --break-system-packages \
